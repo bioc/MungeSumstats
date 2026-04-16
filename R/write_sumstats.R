@@ -158,7 +158,9 @@ write_sumstats <- function(sumstats_dt,
             if (endsWith(save_path,".bgz")) {
                 save_path <- Rsamtools::bgzip(tmp_save_path, overwrite = TRUE)
             } else if (endsWith(save_path,".gz")) {
-                save_path <- R.utils::gzip(tmp_save_path, overwrite = TRUE)
+                #save_path <- R.utils::gzip(tmp_save_path, overwrite = TRUE)
+                # IMPORTANT: use bgzip, not gzip, for VCF compatibility
+                save_path <- Rsamtools::bgzip(tmp_save_path, overwrite = TRUE)
             } else {
                 save_path <- tmp_save_path
             }
